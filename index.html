@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarveshram A | AI Engineer Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <style>
         :root {
-            --primary-dark: #0a192f;
-            --primary-light: #172a45;
-            --accent-teal: #64ffda;
+            --primary-dark: #0a0e17;
+            --primary-light: #13182b;
+            --accent-teal: #00f5d4;
             --accent-pink: #f72585;
-            --accent-purple: #7209b7;
-            --accent-blue: #3a86ff;
-            --text-light: #ccd6f6;
-            --text-dark: #8892b0;
+            --accent-purple: #9b5de5;
+            --accent-blue: #00bbf9;
+            --accent-yellow: #fee440;
+            --text-light: #f8f9fa;
+            --text-dark: #adb5bd;
             --gold: #ffd700;
             --platinum: #e5e4e2;
-            --box-shadow-luxury: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --box-shadow-luxury: 0 25px 50px -12px rgba(0, 245, 212, 0.25);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -35,29 +38,32 @@
 
         body {
             font-family: 'Calibre', 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.8;
             color: var(--text-light);
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            background-color: var(--primary-dark);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            perspective: 1000px;
         }
 
         h1, h2, h3, h4 {
             font-family: 'SF Mono', 'Fira Code', monospace;
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             color: var(--text-dark);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            font-weight: 400;
         }
 
         a {
             text-decoration: none;
             transition: var(--transition);
+            color: var(--accent-teal);
         }
 
         ul {
@@ -71,115 +77,38 @@
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
-        /* Luxury Header */
-        .luxury-header {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(circle at 20% 50%, rgba(23, 42, 69, 0.8) 0%, rgba(10, 25, 47, 1) 70%);
-        }
-
-        .luxury-header::before {
-            content: '';
-            position: absolute;
+        /* 3D Animated Background */
+        #vanta-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSJyZ2JhKDEwMCwxNTQsMjU1LDAuMDMpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCBmaWxsPSJ1cmwoI3BhdHRlcm4pIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PC9zdmc+');
-            opacity: 0.15;
-            z-index: 0;
+            z-index: -1;
+            opacity: 0.3;
         }
 
-        .header-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-        }
-
-        .profile-img-container {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 0 auto 2rem;
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-teal);
-            filter: grayscale(20%) contrast(1.1);
-            transition: var(--transition);
-            position: relative;
-            z-index: 1;
-        }
-
-        .profile-img:hover {
-            filter: grayscale(0%) contrast(1);
-            transform: scale(1.03);
-        }
-
-        .profile-img-container::after {
-            content: '';
-            position: absolute;
-            width: 105%;
-            height: 105%;
-            top: -2.5%;
-            left: -2.5%;
-            border-radius: 50%;
-            border: 2px dashed var(--accent-teal);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .title {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        .subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--accent-teal);
-            text-align: center;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .luxury-cta {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        /* Luxury Navigation */
+        /* Luxury Navigation - Glass Morphism */
         .luxury-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 80px;
-            background-color: rgba(10, 25, 47, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+            height: 100px;
+            background: rgba(10, 14, 23, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 245, 212, 0.1);
         }
 
         .nav-container {
@@ -192,25 +121,49 @@
 
         .logo {
             font-family: 'SF Mono', monospace;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--accent-teal);
             font-weight: 700;
-            padding: 1rem;
-            border: 2px solid var(--accent-teal);
-            border-radius: 5px;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px rgba(0, 245, 212, 0.5);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-teal);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
         }
 
         .nav-links a {
             color: var(--text-light);
             font-family: 'SF Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
             position: relative;
             padding: 0.5rem 0;
+            letter-spacing: 1px;
         }
 
         .nav-links a::before {
@@ -220,7 +173,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--accent-teal);
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
             transition: var(--transition);
         }
 
@@ -243,372 +196,205 @@
         .hamburger {
             display: none;
             cursor: pointer;
-            z-index: 101;
-        }
-
-        /* Luxury Sections */
-        section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin-bottom: 3.5rem;
-            position: relative;
-            display: inline-block;
-            color: var(--text-light);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-teal), rgba(100, 255, 218, 0.1));
-        }
-
-        .section-number {
-            font-family: 'SF Mono', monospace;
+            z-index: 1001;
             color: var(--accent-teal);
-            font-size: 1.2rem;
-            margin-right: 0.5rem;
+            font-size: 1.8rem;
         }
 
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 3fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text {
-            position: relative;
-        }
-
-        .about-text::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -30px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, rgba(10, 25, 47, 0) 70%);
-            z-index: -1;
-        }
-
-        .about-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .luxury-card {
-            background: rgba(23, 42, 69, 0.5);
-            padding: 2rem;
-            border-radius: 5px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            box-shadow: var(--box-shadow-luxury);
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-        }
-
-        .luxury-card:hover {
-            transform: translateY(-7px);
-            border-color: var(--accent-teal);
-            box-shadow: 0 20px 30px -15px rgba(100, 255, 218, 0.2);
-        }
-
-        .luxury-card h3 {
-            color: var(--accent-teal);
-            margin-bottom: 1rem;
+        /* Hero Section - 3D Typing Effect */
+        .luxury-header {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-        }
-
-        .luxury-card h3 i {
-            font-size: 1.2rem;
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: rgba(23, 42, 69, 0.5);
-            padding: 2.5rem;
-            border-radius: 5px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            box-shadow: var(--box-shadow-luxury);
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-7px);
-            border-color: var(--accent-pink);
-        }
-
-        .skill-category h3 {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.3rem;
             position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .skill-category h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-pink), transparent);
-        }
-
-        .skill-list {
-            display: grid;
-            gap: 1.2rem;
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .skill-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(100, 255, 218, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-teal);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        /* Certificates Section - Highlighted */
-        .certificates-container {
-            position: relative;
-        }
-
-        .certificates-container::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(247, 37, 133, 0.1) 0%, rgba(10, 25, 47, 0) 70%);
-            z-index: -1;
-        }
-
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .certificate-card {
-            background: linear-gradient(135deg, rgba(23, 42, 69, 0.7) 0%, rgba(10, 25, 47, 0.9) 100%);
-            border-radius: 8px;
             overflow: hidden;
-            box-shadow: var(--box-shadow-luxury);
-            transition: var(--transition);
-            border: 1px solid rgba(114, 9, 183, 0.2);
-            position: relative;
-            z-index: 1;
+            padding-top: 100px;
         }
 
-        .certificate-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(114, 9, 183, 0.1) 0%, transparent 100%);
-            z-index: -1;
-        }
-
-        .certificate-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -15px rgba(114, 9, 183, 0.4);
-            border-color: var(--accent-purple);
-        }
-
-        .certificate-badge {
-            position: absolute;
-            top: 20px;
-            right: -10px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 3px;
-            box-shadow: 0 4px 15px rgba(114, 9, 183, 0.4);
-            z-index: 2;
-        }
-
-        .certificate-content {
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .certificate-title {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .certificate-issuer {
-            color: var(--accent-teal);
-            font-family: 'SF Mono', monospace;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .certificate-date {
-            color: var(--text-dark);
-            font-family: 'SF Mono', monospace;
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        /* Internships Section */
-        .internship-card {
-            background: linear-gradient(135deg, rgba(23, 42, 69, 0.7) 0%, rgba(10, 25, 47, 0.9) 100%);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--box-shadow-luxury);
-            transition: var(--transition);
-            border: 1px solid rgba(58, 134, 255, 0.2);
-            position: relative;
-        }
-
-        .internship-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px -15px rgba(58, 134, 255, 0.4);
-            border-color: var(--accent-blue);
-        }
-
-        .internship-badge {
-            position: absolute;
-            top: 20px;
-            right: -10px;
-            background: linear-gradient(135deg, var(--accent-blue), #4cc9f0);
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 3px;
-            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
-        }
-
-        /* Contact Section */
-        .contact-container {
+        .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-teal), rgba(100, 255, 218, 0.3));
-            color: var(--primary-dark);
-            border-radius: 50%;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
         }
 
-        .contact-details h3 {
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
+        .hero-text {
+            position: relative;
         }
 
-        .contact-details p, .contact-details a {
-            color: var(--text-dark);
-            transition: var(--transition);
-        }
-
-        .contact-details a:hover {
-            color: var(--accent-teal);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(100, 255, 218, 0.1);
-            color: var(--accent-teal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            transition: var(--transition);
-            border: 1px solid var(--accent-teal);
-        }
-
-        .social-link:hover {
-            background: var(--accent-teal);
-            color: var(--primary-dark);
-            transform: translateY(-5px);
-        }
-
-        /* Luxury Buttons - Each with unique gradient */
-        .luxury-btn {
-            display: inline-block;
-            padding: 1rem 1.8rem;
-            border-radius: 5px;
+        .hero-greeting {
             font-family: 'SF Mono', monospace;
-            font-size: 0.9rem;
+            color: var(--accent-teal);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-weight: 700;
+            line-height: 1.1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .typing-text {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typing-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10px;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-teal);
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.6s forwards;
+            position: relative;
+        }
+
+        .hero-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-teal), transparent);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 1s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 1.4s forwards;
+        }
+
+        /* 3D Profile Image Container */
+        .profile-3d-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-3d-wrapper {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            transform-style: preserve-3d;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .profile-img-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-teal);
+            filter: grayscale(10%) contrast(1.1);
+            transition: var(--transition);
+            backface-visibility: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 245, 212, 0.3);
+            transform: translateZ(50px);
+        }
+
+        .profile-3d-ring {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            border: 2px dashed var(--accent-teal);
+            animation: rotate 20s linear infinite;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 30px rgba(0, 245, 212, 0.2);
+        }
+
+        .profile-3d-ring:nth-child(2) {
+            width: 120%;
+            height: 120%;
+            animation: rotateReverse 25s linear infinite;
+            border-color: var(--accent-blue);
+        }
+
+        .profile-3d-ring:nth-child(3) {
+            width: 130%;
+            height: 130%;
+            animation: rotate 30s linear infinite;
+            border-color: var(--accent-purple);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateY(360deg) rotateZ(360deg); }
+        }
+
+        @keyframes rotateReverse {
+            0% { transform: rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateY(-360deg) rotateZ(-360deg); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
+            100% { transform: translateY(0px) rotateY(0deg); }
+        }
+
+        /* Luxury Buttons */
+        .luxury-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'SF Mono', monospace;
+            font-size: 1rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
             z-index: 1;
             border: none;
             cursor: pointer;
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
         }
 
         .luxury-btn::before {
@@ -625,97 +411,551 @@
         .btn-teal {
             color: var(--primary-dark);
             background: var(--accent-teal);
-            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 245, 212, 0.4);
         }
 
         .btn-teal:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px -10px rgba(0, 245, 212, 0.6);
         }
 
-        .btn-pink {
+        .btn-outline {
+            color: var(--accent-teal);
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 245, 212, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 245, 212, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-light);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-title.animate {
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-teal), transparent);
+        }
+
+        .section-number {
+            font-family: 'SF Mono', monospace;
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text {
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .about-text.animate {
+            animation: fadeInRight 0.8s forwards;
+        }
+
+        .about-text::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.1) 0%, rgba(10, 14, 23, 0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .luxury-card {
+            background: rgba(19, 24, 43, 0.6);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 245, 212, 0.1);
+            box-shadow: var(--box-shadow-luxury);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .luxury-card.animate {
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-10px) !important;
+            border-color: var(--accent-teal);
+            box-shadow: 0 30px 60px -15px rgba(0, 245, 212, 0.3);
+        }
+
+        .luxury-card h3 {
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .luxury-card h3 i {
+            font-size: 1.5rem;
+        }
+
+        .about-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .about-list.animate {
+            animation: fadeInLeft 0.8s forwards;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .skill-category {
+            background: rgba(19, 24, 43, 0.6);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 245, 212, 0.1);
+            box-shadow: var(--box-shadow-luxury);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .skill-category.animate {
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) !important;
+            border-color: var(--accent-pink);
+        }
+
+        .skill-category h3 {
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .skill-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-pink), transparent);
+        }
+
+        .skill-list {
+            display: grid;
+            gap: 1.8rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 245, 212, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-teal);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .skill-item:hover .skill-icon {
+            background: var(--accent-teal);
+            color: var(--primary-dark);
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-description {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Certificates Section */
+        .certificates-container {
+            position: relative;
+        }
+
+        .certificates-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(155, 93, 229, 0.1) 0%, rgba(10, 14, 23, 0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, rgba(19, 24, 43, 0.7) 0%, rgba(10, 14, 23, 0.9) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-luxury);
+            transition: var(--transition);
+            border: 1px solid rgba(155, 93, 229, 0.2);
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .certificate-card.animate {
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(155, 93, 229, 0.1) 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-15px) !important;
+            box-shadow: 0 30px 60px -15px rgba(155, 93, 229, 0.4);
+            border-color: var(--accent-purple);
+        }
+
+        .certificate-badge {
+            position: absolute;
+            top: 25px;
+            right: -10px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
             color: white;
-            background: linear-gradient(135deg, var(--accent-pink), #b5179e);
-            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px -10px rgba(155, 93, 229, 0.4);
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-pink:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(247, 37, 133, 0.4);
+        .certificate-content {
+            padding: 3rem;
+            position: relative;
         }
 
-        .btn-purple {
+        .certificate-title {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .certificate-issuer {
+            color: var(--accent-teal);
+            font-family: 'SF Mono', monospace;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .certificate-date {
+            color: var(--text-dark);
+            font-family: 'SF Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .certificate-btn {
+            margin-top: 2rem;
+        }
+
+        /* Internships Section */
+        .internship-card {
+            background: linear-gradient(135deg, rgba(19, 24, 43, 0.7) 0%, rgba(10, 14, 23, 0.9) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-luxury);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 187, 249, 0.2);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .internship-card.animate {
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .internship-card:hover {
+            transform: translateY(-15px) !important;
+            box-shadow: 0 30px 60px -15px rgba(0, 187, 249, 0.4);
+            border-color: var(--accent-blue);
+        }
+
+        .internship-badge {
+            position: absolute;
+            top: 25px;
+            right: -10px;
+            background: linear-gradient(135deg, var(--accent-blue), #4cc9f0);
             color: white;
-            background: linear-gradient(135deg, var(--accent-purple), #480ca8);
-            box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px -10px rgba(0, 187, 249, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-purple:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(114, 9, 183, 0.4);
+        .internship-content {
+            padding: 3rem;
         }
 
-        .btn-blue {
-            color: white;
-            background: linear-gradient(135deg, var(--accent-blue), #4895ef);
-            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+        .internship-list {
+            margin-top: 1.5rem;
+            padding-left: 1.5rem;
         }
 
-        .btn-blue:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+        .internship-list li {
+            list-style-type: disc;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .contact-info.animate {
+            animation: fadeInRight 0.8s forwards;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-teal), rgba(0, 245, 212, 0.3));
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 10px 30px -10px rgba(0, 245, 212, 0.4);
+        }
+
+        .contact-details h3 {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-details p, .contact-details a {
+            color: var(--text-dark);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-teal);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 245, 212, 0.1);
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--accent-teal);
+        }
+
+        .social-link:hover {
+            background: var(--accent-teal);
+            color: var(--primary-dark);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 10px 30px -10px rgba(0, 245, 212, 0.4);
         }
 
         /* Luxury Form */
         .luxury-form {
-            background: rgba(23, 42, 69, 0.5);
-            padding: 2.5rem;
-            border-radius: 5px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
+            background: rgba(19, 24, 43, 0.6);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 245, 212, 0.1);
             box-shadow: var(--box-shadow-luxury);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .luxury-form.animate {
+            animation: fadeInLeft 0.8s forwards;
+        }
+
+        .luxury-form h3 {
+            color: var(--accent-teal);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            text-align: center;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: var(--accent-teal);
             font-family: 'SF Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.8rem 1rem;
-            background: rgba(23, 42, 69, 0.8);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            border-radius: 3px;
+            padding: 1rem 1.5rem;
+            background: rgba(19, 24, 43, 0.8);
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            border-radius: 8px;
             color: var(--text-light);
             font-family: 'Calibre', sans-serif;
             transition: var(--transition);
+            font-size: 1rem;
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--accent-teal);
-            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.2);
         }
 
         textarea.form-control {
-            min-height: 150px;
+            min-height: 180px;
             resize: vertical;
         }
 
         /* Luxury Footer */
         .luxury-footer {
-            background: rgba(10, 25, 47, 0.9);
-            padding: 3rem 0;
+            background: rgba(10, 14, 23, 0.9);
+            padding: 4rem 0;
             text-align: center;
             position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .luxury-footer::before {
@@ -732,54 +972,245 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'SF Mono', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-teal);
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .footer-links a {
             color: var(--text-light);
             font-family: 'SF Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
             transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
         }
 
         .footer-links a:hover {
             color: var(--accent-teal);
         }
 
+        .footer-social {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .profile-3d-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+
+.profile-3d-wrapper {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    transform-style: preserve-3d;
+    animation: float 8s ease-in-out infinite;
+}
+
+.profile-3d-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+}
+
+.profile-img-3d {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-teal);
+    filter: grayscale(10%) contrast(1.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 245, 212, 0.3);
+    transform: translateZ(50px);
+    backface-visibility: hidden;
+}
+
+.profile-3d-ring {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.profile-3d-ring.ring-1 {
+    width: 110%;
+    height: 110%;
+    border-color: var(--accent-teal);
+    animation: rotate 25s linear infinite;
+}
+
+.profile-3d-ring.ring-2 {
+    width: 120%;
+    height: 120%;
+    border-color: var(--accent-blue);
+    animation: rotateReverse 30s linear infinite;
+    border-style: dashed;
+}
+
+.profile-3d-ring.ring-3 {
+    width: 130%;
+    height: 130%;
+    border-color: var(--accent-purple);
+    animation: rotate 35s linear infinite;
+    border-width: 1px;
+}
+
+@keyframes rotate {
+    0% { transform: translate3d(-50%, -50%, 0) rotateZ(0deg); }
+    100% { transform: translate3d(-50%, -50%, 0) rotateZ(360deg); }
+}
+
+@keyframes rotateReverse {
+    0% { transform: translate3d(-50%, -50%, 0) rotateZ(0deg); }
+    100% { transform: translate3d(-50%, -50%, 0) rotateZ(-360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+    50% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); }
+}
+
+
         .footer-copyright {
             color: var(--text-dark);
-            font-size: 0.8rem;
-            margin-top: 1rem;
+            font-size: 0.9rem;
+            margin-top: 2rem;
         }
 
         .footer-copyright a {
             color: var(--accent-teal);
+            font-weight: 600;
         }
 
         /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .about-content, .contact-container {
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .profile-3d-container {
+                order: -1;
+                height: 400px;
+                margin-bottom: 3rem;
+            }
+            
+            .about-content {
                 grid-template-columns: 1fr;
             }
             
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
             .certificates-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+            
+            section {
+                padding: 6rem 0;
             }
         }
 
@@ -788,15 +1219,17 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 80%;
                 height: 100vh;
-                background-color: var(--primary-light);
+                background: rgba(10, 14, 23, 0.95);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 2rem;
+                gap: 2.5rem;
                 transition: var(--transition);
-                z-index: 100;
+                z-index: 1000;
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
             }
             
             .nav-links.active {
@@ -805,12 +1238,15 @@
             
             .hamburger {
                 display: block;
-                color: var(--accent-teal);
-                font-size: 1.5rem;
             }
             
-            section {
-                padding: 4rem 0;
+            .profile-3d-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .luxury-card, .skill-category, .certificate-card, .internship-card {
+                padding: 2rem;
             }
         }
 
@@ -820,26 +1256,59 @@
                 padding: 0 1rem;
             }
             
-            .luxury-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
+            .hero-title {
+                font-size: 3rem;
             }
             
-            .profile-img-container {
-                width: 200px;
-                height: 200px;
+            .hero-cta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .luxury-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .skills-container, .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-3d-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .footer-links {
+                gap: 1.5rem;
+                flex-direction: column;
             }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Mono:wght@400;600&family=Calibre:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Mono:wght@400;600;700&family=Calibre:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- 3D Animated Background -->
+    <div id="vanta-bg"></div>
+
     <!-- Luxury Navigation -->
     <nav class="luxury-nav">
         <div class="container nav-container">
-            <a href="#" class="logo">SA</a>
+            <a href="#" class="logo">Sarveshram.</a>
             <ul class="nav-links">
                 <li><a href="#about" class="active">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -853,18 +1322,37 @@
         </div>
     </nav>
 
-    <!-- Luxury Header -->
+    <!-- Hero Section with 3D Profile -->
     <header class="luxury-header">
-        <div class="container header-content">
-            <div class="profile-img-container float-animation">
-                <img src="./FitRoom.app_1741081265161.jpg" alt="Sarveshram A" class="profile-img">
-            </div>
-            <h1 class="title">Sarveshram A</h1>
-            <p class="subtitle">AI Engineer & Tech Enthusiast</p>
-            <div class="luxury-cta">
-                <a href="#contact" class="luxury-btn btn-teal">Get In Touch</a>
-            </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-greeting">Hi, my name is</p>
+                    <h1 class="hero-title">
+                        <span class="typing-text" id="typed-name"></span>
+                    </h1>
+                    <p class="hero-subtitle">Artificial Intelligence Engineer & Creative Technologist</p>
+                    <p class="hero-description">
+                        I specialize in building intelligent systems that solve complex problems. 
+                        With expertise in machine learning, deep learning, and creative coding, 
+                        I bridge the gap between cutting-edge technology and real-world applications.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="luxury-btn btn-teal">Get In Touch</a>
+                        <a href="#about" class="luxury-btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="profile-3d-container">
+    <div class="profile-3d-wrapper">
+        <div class="profile-3d-inner">
+            <img src="./Untitled design (16).png" alt="Sarveshram A" class="profile-img-3d">
         </div>
+        <div class="profile-3d-ring ring-1"></div>
+        <div class="profile-3d-ring ring-2"></div>
+        <div class="profile-3d-ring ring-3"></div>
+    </div>
+</div>
+
     </header>
 
     <!-- About Section -->
@@ -874,25 +1362,26 @@
             <div class="about-content">
                 <div class="about-text">
                     <div class="luxury-card">
-                        <h3><i class="fas fa-user"></i> Professional Bio</h3>
-                        <p>I'm A. Sarveshram, an engineering graduate specializing in Artificial Intelligence with a strong interest in emerging technologies and intelligent systems. I work with tools and languages like Python, HTML, and Illustrator, combining technical skills with creative problem-solving.</p>
-                        <p>My goal is to grow as a well-rounded engineer, contributing to innovative projects that make a real-world impact. I'm passionate about continuous learning and eager to explore the future of AI-driven solutions.</p>
-                        <a href="#certificates" class="luxury-btn btn-pink" style="margin-top: 1.5rem;">View Certifications</a>
+                        <h3><i class="fas fa-user-tie"></i> Professional Profile</h3>
+                        <p>I'm Sarveshram A, an AI Engineer with a passion for creating intelligent systems that push the boundaries of what's possible. My journey in artificial intelligence combines rigorous technical expertise with creative problem-solving to deliver innovative solutions.</p>
+                        <p>With a strong foundation in machine learning algorithms, neural networks, and data science, I approach each project with a unique blend of analytical thinking and artistic sensibility. My work focuses on developing AI systems that are not only powerful but also intuitive and user-friendly.</p>
+                        <p>Beyond coding, I'm deeply interested in the ethical implications of AI and strive to create technology that benefits society while minimizing potential harms.</p>
                     </div>
                 </div>
                 <div class="about-list">
                     <div class="luxury-card">
                         <h3><i class="fas fa-graduation-cap"></i> Education</h3>
                         <p><strong>KIT-Kalaignar Karunanithi Institute of Technology</strong></p>
-                        <p>B.E. in Artificial Intelligence | 2020-2024</p>
+                        <p>Bachelor of Engineering in Artificial Intelligence | 2023-2027</p>
+                        <p>Specialized coursework in Machine Learning, Deep Learning, Computer Vision, and Natural Language Processing.</p>
                     </div>
                     <div class="luxury-card">
-                        <h3><i class="fas fa-bullseye"></i> Career Path</h3>
-                        <p>Aspiring AI engineer dedicated to building intelligent systems that solve real-world problems through innovative machine learning solutions and data-driven approaches.</p>
+                        <h3><i class="fas fa-bullseye"></i> Career Vision</h3>
+                        <p>To pioneer AI solutions that transform industries while maintaining ethical standards. I aim to lead interdisciplinary teams in developing cutting-edge technologies that solve pressing global challenges.</p>
                     </div>
                     <div class="luxury-card">
-                        <h3><i class="fas fa-heart"></i> Core Values</h3>
-                        <p>Driven by curiosity, integrity, and a passion for innovation, I strive for continuous growth and meaningful collaboration in all my professional endeavors.</p>
+                        <h3><i class="fas fa-heart"></i> Core Philosophy</h3>
+                        <p>I believe in continuous learning, collaborative innovation, and technology with purpose. My work is guided by principles of integrity, creativity, and social responsibility.</p>
                     </div>
                 </div>
             </div>
@@ -902,103 +1391,103 @@
     <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <h2 class="section-title"><span class="section-number">02.</span> My Skills</h2>
+            <h2 class="section-title"><span class="section-number">02.</span> Technical Expertise</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <h3><i class="fas fa-laptop-code"></i> Development</h3>
                     <ul class="skill-list">
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fab fa-python"></i></span>
                             <div>
-                                <strong>Python</strong>
-                                <p>Advanced proficiency in Python for AI/ML, data analysis, and automation</p>
+                                <span class="skill-name">Python</span>
+                                <p class="skill-description">Advanced ML/DL with TensorFlow, PyTorch, Scikit-learn, Pandas, NumPy</p>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-icon"><i class="fas fa-c"></i></span>
+                            <span class="skill-icon"><i class="fas fa-code"></i></span>
                             <div>
-                                <strong>C Programming</strong>
-                                <p>System-level programming and algorithm implementation</p>
+                                <span class="skill-name">C Programming</span>
+                                <p class="skill-description">System-level programming, algorithm optimization, embedded systems</p>
                             </div>
                         </li>
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fas fa-project-diagram"></i></span>
                             <div>
-                                <strong>Data Structures & Algorithms</strong>
-                                <p>Efficient problem-solving with optimized algorithms</p>
+                                <span class="skill-name">Data Structures</span>
+                                <p class="skill-description">Efficient implementation of complex algorithms and data processing</p>
                             </div>
                         </li>
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fab fa-html5"></i></span>
                             <div>
-                                <strong>HTML/CSS</strong>
-                                <p>Front-end development and responsive design</p>
+                                <span class="skill-name">Web Technologies</span>
+                                <p class="skill-description">Interactive front-end development with modern frameworks</p>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> Professional</h3>
+                    <h3><i class="fas fa-brain"></i> AI Specializations</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="fas fa-robot"></i></span>
+                            <div>
+                                <span class="skill-name">Machine Learning</span>
+                                <p class="skill-description">Supervised/unsupervised learning, feature engineering, model evaluation</p>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="fas fa-eye"></i></span>
+                            <div>
+                                <span class="skill-name">Computer Vision</span>
+                                <p class="skill-description">Image classification, object detection, OpenCV, CNN architectures</p>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="fas fa-language"></i></span>
+                            <div>
+                                <span class="skill-name">NLP</span>
+                                <p class="skill-description">Text processing, sentiment analysis, transformer models, BERT</p>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="fas fa-chart-line"></i></span>
+                            <div>
+                                <span class="skill-name">Data Science</span>
+                                <p class="skill-description">Exploratory analysis, statistical modeling, data visualization</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Professional Skills</h3>
                     <ul class="skill-list">
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fas fa-lightbulb"></i></span>
                             <div>
-                                <strong>Problem-solving</strong>
-                                <p>Analytical approach to complex technical challenges</p>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <span class="skill-icon"><i class="fas fa-search"></i></span>
-                            <div>
-                                <strong>Critical Thinking</strong>
-                                <p>Evaluating information objectively to make sound decisions</p>
+                                <span class="skill-name">Problem Solving</span>
+                                <p class="skill-description">Algorithmic thinking and innovative solution development</p>
                             </div>
                         </li>
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fas fa-users"></i></span>
                             <div>
-                                <strong>Leadership</strong>
-                                <p>Guiding teams to successful project completion</p>
+                                <span class="skill-name">Leadership</span>
+                                <p class="skill-description">Project management and team coordination</p>
                             </div>
                         </li>
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fas fa-comments"></i></span>
                             <div>
-                                <strong>Communication</strong>
-                                <p>Clear articulation of technical concepts</p>
+                                <span class="skill-name">Communication</span>
+                                <p class="skill-description">Technical documentation and client presentations</p>
                             </div>
                         </li>
                         <li class="skill-item">
                             <span class="skill-icon"><i class="fas fa-clock"></i></span>
                             <div>
-                                <strong>Time Management</strong>
-                                <p>Efficient organization and prioritization of tasks</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-language"></i> Languages</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">
-                            <span class="skill-icon"><i class="fas fa-globe-americas"></i></span>
-                            <div>
-                                <strong>English</strong>
-                                <p>Professional working proficiency</p>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <span class="skill-icon"><i class="fas fa-globe-asia"></i></span>
-                            <div>
-                                <strong>Tamil</strong>
-                                <p>Native proficiency</p>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <span class="skill-icon"><i class="fas fa-globe"></i></span>
-                            <div>
-                                <strong>Hindi</strong>
-                                <p>Intermediate conversational proficiency</p>
+                                <span class="skill-name">Time Management</span>
+                                <p class="skill-description">Agile development and efficient workflow organization</p>
                             </div>
                         </li>
                     </ul>
@@ -1007,59 +1496,57 @@
         </div>
     </section>
 
-    <!-- Certificates Section - Highlighted -->
-    <section id="certificates" class="highlight-section">
+    <!-- Certificates Section -->
+    <section id="certificates">
         <div class="container certificates-container">
             <h2 class="section-title"><span class="section-number">03.</span> Certifications</h2>
             <div class="certificates-grid">
                 <div class="certificate-card">
-                    <div class="certificate-badge">Premium</div>
+                    <div class="certificate-badge">Advanced</div>
                     <div class="certificate-content">
-                        <h3 class="certificate-title">Machine Learning using Python</h3>
-                        <span class="certificate-issuer">Coursera</span>
-                        <span class="certificate-date">Completed: June 2023</span>
-                        <p>Comprehensive training in machine learning algorithms including supervised and unsupervised learning, neural networks, and their implementation using Python libraries like scikit-learn, TensorFlow, and PyTorch.</p>
-                        <a href="#" class="luxury-btn btn-purple" style="margin-top: 1.5rem;">View Credential</a>
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-badge">Verified</div>
-                    <div class="certificate-content">
-                        <h3 class="certificate-title">Get Started with Python</h3>
-                        <span class="certificate-issuer">Online Course</span>
-                        <span class="certificate-date">Completed: March 2022</span>
-                        <p>Fundamentals of Python programming language including data structures, OOP concepts, basic algorithms, and introductory data science applications with NumPy and Pandas.</p>
-                        <a href="#" class="luxury-btn btn-purple" style="margin-top: 1.5rem;">View Credential</a>
+                        <h3 class="certificate-title">Machine Learning with Python</h3>
+                        <span class="certificate-issuer">Coursera | Stanford University</span>
+                        <span class="certificate-date">Issued: June 2023 | Credential ID: XYZ12345</span>
+                        <p>Comprehensive certification covering fundamental machine learning concepts including supervised and unsupervised learning, neural networks, and their practical implementation using Python libraries like scikit-learn, TensorFlow, and PyTorch.</p>
+                        <div class="certificate-btn">
+                            <a href="#" class="luxury-btn btn-purple">View Credential</a>
+                        </div>
                     </div>
                 </div>
                 <div class="certificate-card">
                     <div class="certificate-badge">Professional</div>
                     <div class="certificate-content">
-                        <h3 class="certificate-title">Mist AI</h3>
+                        <h3 class="certificate-title">Mist AI Certification</h3>
                         <span class="certificate-issuer">Juniper Networks</span>
-                        <span class="certificate-date">Completed: August 2023</span>
-                        <p>Training in artificial intelligence applications in networking and cloud technologies, focusing on AI-driven network automation, predictive analytics, and self-healing networks.</p>
-                        <a href="#" class="luxury-btn btn-purple" style="margin-top: 1.5rem;">View Credential</a>
+                        <span class="certificate-date">Issued: August 2023 | Credential ID: JNPR7890</span>
+                        <p>Specialized training in AI applications for networking and cloud technologies, focusing on AI-driven network automation, predictive analytics, and self-healing network architectures.</p>
+                        <div class="certificate-btn">
+                            <a href="#" class="luxury-btn btn-purple">View Credential</a>
+                        </div>
                     </div>
                 </div>
                 <div class="certificate-card">
                     <div class="certificate-badge">Industry</div>
                     <div class="certificate-content">
-                        <h3 class="certificate-title">Introduction to AI</h3>
+                        <h3 class="certificate-title">Introduction to Artificial Intelligence</h3>
                         <span class="certificate-issuer">Infosys Springboard</span>
-                        <span class="certificate-date">Completed: January 2023</span>
-                        <p>Overview of artificial intelligence concepts, applications, and industry use cases covering machine learning, natural language processing, computer vision, and ethical AI considerations.</p>
-                        <a href="#" class="luxury-btn btn-purple" style="margin-top: 1.5rem;">View Credential</a>
+                        <span class="certificate-date">Issued: January 2023 | Credential ID: INFY4567</span>
+                        <p>Comprehensive overview of artificial intelligence concepts, applications, and industry use cases covering machine learning, natural language processing, computer vision, and ethical AI considerations.</p>
+                        <div class="certificate-btn">
+                            <a href="#" class="luxury-btn btn-purple">View Credential</a>
+                        </div>
                     </div>
                 </div>
                 <div class="certificate-card">
                     <div class="certificate-badge">Fundamental</div>
                     <div class="certificate-content">
-                        <h3 class="certificate-title">Operating Systems Foundations</h3>
-                        <span class="certificate-issuer">Cursa</span>
-                        <span class="certificate-date">Completed: December 2022</span>
-                        <p>Comprehensive understanding of operating system concepts including process management, memory management, file systems, and their implementations in modern computing environments.</p>
-                        <a href="#" class="luxury-btn btn-purple" style="margin-top: 1.5rem;">View Credential</a>
+                        <h3 class="certificate-title">Python Programming</h3>
+                        <span class="certificate-issuer">University of Michigan</span>
+                        <span class="certificate-date">Issued: March 2022 | Credential ID: UMICH8910</span>
+                        <p>Fundamentals of Python programming language including data structures, OOP concepts, basic algorithms, and introductory data science applications with NumPy and Pandas.</p>
+                        <div class="certificate-btn">
+                            <a href="#" class="luxury-btn btn-purple">View Credential</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1069,36 +1556,42 @@
     <!-- Internships Section -->
     <section id="internships">
         <div class="container">
-            <h2 class="section-title"><span class="section-number">04.</span> Internships</h2>
+            <h2 class="section-title"><span class="section-number">04.</span> Professional Experience</h2>
             <div class="certificates-grid">
                 <div class="internship-card">
-                    <div class="internship-badge">Machine Learning</div>
-                    <div class="certificate-content">
-                        <h3 class="certificate-title">Machine Learning Intern</h3>
+                    <div class="internship-badge">ML Research</div>
+                    <div class="internship-content">
+                        <h3 class="certificate-title">Machine Learning Research Intern</h3>
                         <span class="certificate-issuer">EDU TANTR</span>
-                        <span class="certificate-date">Duration: 3 months | 2023</span>
-                        <p>Hands-on experience with machine learning models including regression, classification, and clustering algorithms. Developed predictive models for real-world datasets and implemented model optimization techniques.</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li style="list-style-type: disc; margin-bottom: 0.5rem;">Implemented sentiment analysis model with 89% accuracy</li>
-                            <li style="list-style-type: disc; margin-bottom: 0.5rem;">Developed customer segmentation using K-means clustering</li>
-                            <li style="list-style-type: disc;">Created automated data preprocessing pipeline</li>
+                        <span class="certificate-date">June 2023 - September 2023 | Coimbatore, India</span>
+                        <p>Conducted advanced research in machine learning applications, focusing on developing innovative solutions for real-world problems using cutting-edge algorithms and techniques.</p>
+                        <ul class="internship-list">
+                            <li>Developed a sentiment analysis model achieving 89% accuracy on customer feedback data</li>
+                            <li>Implemented customer segmentation using K-means clustering for targeted marketing</li>
+                            <li>Created automated data preprocessing pipeline reducing processing time by 40%</li>
+                            <li>Published research findings in internal technical journal</li>
                         </ul>
-                        <a href="#" class="luxury-btn btn-blue" style="margin-top: 1.5rem;">View Project Details</a>
+                        <div class="certificate-btn">
+                            <a href="#" class="luxury-btn btn-blue">View Project Details</a>
+                        </div>
                     </div>
                 </div>
                 <div class="internship-card">
-                    <div class="internship-badge">AI Research</div>
-                    <div class="certificate-content">
-                        <h3 class="certificate-title">Artificial Intelligence Intern</h3>
+                    <div class="internship-badge">AI Development</div>
+                    <div class="internship-content">
+                        <h3 class="certificate-title">Artificial Intelligence Developer Intern</h3>
                         <span class="certificate-issuer">ETHER INFOTECH</span>
-                        <span class="certificate-date">Duration: 2 months | 2022</span>
-                        <p>Worked on AI projects involving natural language processing and computer vision. Participated in research and development of AI solutions for business applications.</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li style="list-style-type: disc; margin-bottom: 0.5rem;">Developed text classification model for customer support tickets</li>
-                            <li style="list-style-type: disc; margin-bottom: 0.5rem;">Implemented image recognition prototype for product categorization</li>
-                            <li style="list-style-type: disc;">Contributed to research paper on AI ethics</li>
+                        <span class="certificate-date">January 2022 - March 2022 | Coimbatore, India</span>
+                        <p>Worked on AI projects involving natural language processing and computer vision, contributing to the development of AI solutions for business applications and research initiatives.</p>
+                        <ul class="internship-list">
+                            <li>Developed text classification model for automating customer support ticket routing</li>
+                            <li>Implemented image recognition prototype for product categorization system</li>
+                            <li>Contributed to research paper on ethical considerations in AI implementation</li>
+                            <li>Presented findings at company-wide tech symposium</li>
                         </ul>
-                        <a href="#" class="luxury-btn btn-blue" style="margin-top: 1.5rem;">View Project Details</a>
+                        <div class="certificate-btn">
+                            <a href="#" class="luxury-btn btn-blue">View Project Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1139,7 +1632,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 style="margin-bottom: 1rem;">Connect With Me</h3>
+                        <h3 style="margin-bottom: 1.5rem;">Connect With Me</h3>
                         <div class="social-links">
                             <a href="https://www.linkedin.com/in/sarvesh-ram-6b1a17338" class="social-link" target="_blank">
                                 <i class="fab fa-linkedin-in"></i>
@@ -1156,11 +1649,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form class="luxury-form">
-                        <h3 style="color: var(--accent-teal); margin-bottom: 1.5rem;">Send Me a Message</h3>
+                <div class="luxury-form">
+                    <h3><i class="fas fa-paper-plane"></i> Send Me a Message</h3>
+                    <form id="contact-form">
                         <div class="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name">Full Name</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -1172,10 +1665,13 @@
                             <input type="text" id="subject" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="5" class="form-control" required></textarea>
+                            <label for="message">Your Message</label>
+                            <textarea id="message" rows="6" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="luxury-btn btn-teal">Send Message</button>
+                        <button type="submit" class="luxury-btn btn-teal">
+                            <span>Send Message</span>
+                            <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1186,15 +1682,15 @@
     <footer class="luxury-footer">
         <div class="container">
             <div class="footer-content">
-                <div class="logo" style="margin-bottom: 1.5rem;">SA</div>
+                <div class="footer-logo">Sarveshram.</div>
                 <div class="footer-links">
                     <a href="#about">About</a>
                     <a href="#skills">Skills</a>
                     <a href="#certificates">Certificates</a>
-                    <a href="#internships">Internships</a>
+                    <a href="#internships">Experience</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <div class="social-links">
+                <div class="footer-social">
                     <a href="https://www.linkedin.com/in/sarvesh-ram-6b1a17338" class="social-link" target="_blank">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
@@ -1213,6 +1709,41 @@
     </footer>
 
     <script>
+        // Initialize Vanta.js animated background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x00f5d4,
+            backgroundColor: 0x0a0e17,
+            points: 12.00,
+            maxDistance: 25.00,
+            spacing: 18.00
+        });
+
+        // Typing animation for name
+        const name = "Sarveshram A";
+        let i = 0;
+        const typingEffect = () => {
+            if (i < name.length) {
+                document.getElementById("typed-name").textContent += name.charAt(i);
+                i++;
+                setTimeout(typingEffect, 150);
+            } else {
+                document.querySelector(".typing-text::after").style.animation = "none";
+            }
+        };
+
+        // Start typing animation when page loads
+        window.addEventListener('load', () => {
+            setTimeout(typingEffect, 1000);
+        });
+
         // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1269,31 +1800,62 @@
                 }
             });
         });
-        
+
         // Animate elements when they come into view
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.luxury-card, .certificate-card, .internship-card, .skill-category');
+            const elements = document.querySelectorAll('.section-title, .luxury-card, .skill-category, .certificate-card, .internship-card, .about-text, .about-list, .contact-info, .luxury-form');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
+                const screenPosition = window.innerHeight / 1.3;
                 
                 if(elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                    element.classList.add('animate');
                 }
             });
         };
-        
+
         // Set initial state for animation
-        document.querySelectorAll('.luxury-card, .certificate-card, .internship-card, .skill-category').forEach(el => {
+        document.querySelectorAll('.section-title, .luxury-card, .skill-category, .certificate-card, .internship-card, .about-text, .about-list, .contact-info, .luxury-form').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         });
         
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // 3D effect for profile image on mouse move
+        const profileWrapper = document.querySelector('.profile-3d-wrapper');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            profileWrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset position when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            profileWrapper.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+         const profile3d = document.querySelector('.profile-3d-inner');
+    
+    document.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        profile3d.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // Reset when mouse leaves
+    document.addEventListener('mouseleave', () => {
+        profile3d.style.transform = 'rotateY(0) rotateX(0)';
+    });
     </script>
 </body>
 </html>
