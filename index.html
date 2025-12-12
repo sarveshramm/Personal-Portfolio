@@ -271,6 +271,59 @@
             50% { border-color: var(--accent-teal); }
         }
 
+        .platforms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.8s forwards;
+        }
+
+        .platform-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 245, 212, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .platform-badge:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 245, 212, 0.2);
+            border-color: var(--accent-teal);
+            box-shadow: 0 10px 20px -10px rgba(0, 245, 212, 0.3);
+        }
+
+        .platform-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent-teal);
+        }
+
+        .platform-name {
+            font-family: 'SF Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .platform-stats {
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            font-family: 'SF Mono', monospace;
+            margin-top: 0.2rem;
+        }
+
         .hero-subtitle {
             font-size: clamp(1rem, 3vw, 1.5rem);
             color: var(--text-dark);
@@ -1631,6 +1684,14 @@
             .luxury-card, .skill-category, .project-card, .certificate-card, .experience-card {
                 padding: 2rem;
             }
+            
+            .platforms-container {
+                gap: 1rem;
+            }
+            
+            .platform-badge {
+                padding: 0.6rem 1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1686,6 +1747,16 @@
                 bottom: 20px;
                 right: 20px;
             }
+            
+            .platforms-container {
+                justify-content: center;
+            }
+            
+            .platform-badge {
+                flex: 1;
+                min-width: 140px;
+                justify-content: center;
+            }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1731,6 +1802,70 @@
                     <h1 class="hero-title">
                         <span class="typing-text">Sarveshram A</span>
                     </h1>
+                    
+                    <!-- Coding Platforms Badges -->
+                    <div class="platforms-container">
+                        <a href="https://www.linkedin.com/in/sarvesh-ram-6b1a17338" target="_blank" class="platform-badge">
+                            <div class="platform-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <div class="platform-name">LinkedIn</div>
+                                <div class="platform-stats">AI Engineer</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://github.com/sarveshramm" target="_blank" class="platform-badge">
+                            <div class="platform-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div>
+                                <div class="platform-name">GitHub</div>
+                                <div class="platform-stats">Projects & Code</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://codolio.com/profile/sarveshram.A" target="_blank" class="platform-badge">
+                            <div class="platform-icon">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <div>
+                                <div class="platform-name">Codolio</div>
+                                <div class="platform-stats">Portfolio</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://leetcode.com/u/sarveshramml/" target="_blank" class="platform-badge">
+                            <div class="platform-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <div class="platform-name">LeetCode</div>
+                                <div class="platform-stats"></div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.codechef.com/users/kit23bam047" target="_blank" class="platform-badge">
+                            <div class="platform-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div>
+                                <div class="platform-name">CodeChef</div>
+                                <div class="platform-stats"></div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://codeforces.com/profile/sarveshram" target="_blank" class="platform-badge">
+                            <div class="platform-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="platform-name">Codeforces</div>
+                                <div class="platform-stats"></div>
+                            </div>
+                        </a>
+                    </div>
+                    
                     <p class="hero-subtitle">AI Engineer | Competitive Programmer | Full Stack Developer</p>
                     <p class="hero-description">
                         I'm a Pre-Final Year B.E. CSE (AI&ML) student at KIT, passionate about building intelligent systems 
@@ -1952,7 +2087,7 @@
                             <li>Accessibility-focused design</li>
                         </ul>
                         <div class="certificate-btn">
-                            <a href="#" class="luxury-btn btn-teal">View Project Details</a>
+                            <a href="./eduntra.html" class="luxury-btn btn-teal">View Project Details</a>
                         </div>
                     </div>
                 </div>
@@ -1976,7 +2111,7 @@
                             <li>Sub-50ms decision latency</li>
                         </ul>
                         <div class="certificate-btn">
-                            <a href="#" class="luxury-btn btn-teal">View Project Details</a>
+                            <a href="./aerts.html" class="luxury-btn btn-teal">View Project Details</a>
                         </div>
                     </div>
                 </div>
@@ -2000,7 +2135,7 @@
                             <li>Designed for accessibility</li>
                         </ul>
                         <div class="certificate-btn">
-                            <a href="#" class="luxury-btn btn-teal">View Project Details</a>
+                            <a href="./kocksense.html" class="luxury-btn btn-teal">View Project Details</a>
                         </div>
                     </div>
                 </div>
@@ -2022,7 +2157,7 @@
                             <li>All tools feature intuitive AI interfaces</li>
                         </ul>
                         <div class="certificate-btn">
-                            <a href="#" class="luxury-btn btn-teal">View Project Details</a>
+                            <a href="./mini.html" class="luxury-btn btn-teal">View Project Details</a>
                         </div>
                     </div>
                 </div>
@@ -2179,7 +2314,6 @@
                         <div class="contact-details">
                             <h3>Email</h3>
                             <a href="mailto:kit27.am47@gmail.com">kit27.am47@gmail.com</a>
-                            <a href="mailto:sarveshramaiml@gmail.com">sarveshramaiml@gmail.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -2206,13 +2340,13 @@
                             <a href="https://www.linkedin.com/in/sarvesh-ram-6b1a17338" class="social-link" target="_blank">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="#" class="social-link" target="_blank">
+                            <a href="https://github.com/sarveshramm" class="social-link" target="_blank">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="social-link" target="_blank">
-                                <i class="fab fa-leetcode"></i>
+                            <a href="https://codolio.com/profile/sarveshram.A" class="social-link" target="_blank">
+                                <i class="fas fa-terminal"></i>
                             </a>
-                            <a href="#" class="social-link" target="_blank">
+                            <a href="https://leetcode.com/u/sarveshram/" class="social-link" target="_blank">
                                 <i class="fas fa-code"></i>
                             </a>
                         </div>
@@ -2264,13 +2398,13 @@
                     <a href="https://www.linkedin.com/in/sarvesh-ram-6b1a17338" class="social-link" target="_blank">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="social-link" target="_blank">
+                    <a href="https://github.com/sarveshramm" class="social-link" target="_blank">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="social-link" target="_blank">
-                        <i class="fab fa-leetcode"></i>
+                    <a href="https://codolio.com/profile/sarveshram.A" class="social-link" target="_blank">
+                        <i class="fas fa-terminal"></i>
                     </a>
-                    <a href="#" class="social-link" target="_blank">
+                    <a href="https://leetcode.com/u/sarveshram/" class="social-link" target="_blank">
                         <i class="fas fa-code"></i>
                     </a>
                 </div>

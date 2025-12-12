@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Projects | Sarveshram A | AI Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <style>
+        :root {
+            --primary-dark: #0a0e17;
+            --primary-light: #13182b;
+            --accent-teal: #00f5d4;
+            --accent-pink: #f72585;
+            --accent-purple: #9b5de5;
+            --accent-blue: #00bbf9;
+            --accent-yellow: #fee440;
+            --text-light: #f8f9fa;
+            --text-dark: #adb5bd;
+            --box-shadow-luxury: 0 25px 50px -12px rgba(0, 245, 212, 0.25);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            background-color: var(--primary-dark);
+        }
+
+        body {
+            font-family: 'Calibre', 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background-color: var(--primary-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.8rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transition);
+            color: var(--accent-teal);
+        }
+
+        ul, ol {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .luxury-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(254, 228, 64, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: 'SF Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px rgba(254, 228, 64, 0.7);
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            color: var(--accent-yellow);
+            font-family: 'SF Mono', monospace;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            text-shadow: 0 0 10px rgba(254, 228, 64, 0.5);
+        }
+
+        /* Page Header */
+        .page-header {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            background: linear-gradient(135deg, 
+                rgba(254, 228, 64, 0.1) 0%, 
+                rgba(249, 115, 22, 0.1) 50%, 
+                rgba(236, 72, 153, 0.1) 100%);
+        }
+
+        .page-title-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-yellow), #f97316);
+            color: var(--primary-dark);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px -10px rgba(254, 228, 64, 0.4);
+        }
+
+        .page-main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: linear-gradient(135deg, var(--accent-yellow), #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-tagline {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        /* Projects Grid */
+        .projects-section {
+            padding: 6rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: rgba(19, 24, 43, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-luxury);
+            transition: var(--transition);
+            border: 1px solid rgba(254, 228, 64, 0.15);
+            position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 228, 64, 0.05), transparent);
+            transition: left 0.7s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px -15px rgba(254, 228, 64, 0.4);
+            border-color: var(--accent-yellow);
+        }
+
+        .project-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(254, 228, 64, 0.1);
+            color: var(--accent-yellow);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', monospace;
+            border: 1px solid var(--accent-yellow);
+        }
+
+        .luxury-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'SF Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.4);
+        }
+
+        .luxury-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .luxury-btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-yellow {
+            color: var(--primary-dark);
+            background: var(--accent-yellow);
+            box-shadow: 0 8px 20px -8px rgba(254, 228, 64, 0.6);
+        }
+
+        .btn-yellow:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px -10px rgba(254, 228, 64, 0.8);
+        }
+
+        /* Demo Section */
+        .demo-section {
+            padding: 6rem 0;
+            background: rgba(254, 228, 64, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(254, 228, 64, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .demo-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-light);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-yellow), transparent);
+        }
+
+        /* Footer */
+        .luxury-footer {
+            background: rgba(10, 14, 23, 0.95);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(254, 228, 64, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'SF Mono', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .footer-logo:hover {
+            text-shadow: 0 0 20px rgba(254, 228, 64, 0.7);
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 0 1rem;
+            }
+            
+            .project-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Mono:wght@400;600;700&family=Calibre:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="luxury-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sarveshram.</a>
+            <a href="index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="page-title-container">
+                <span class="page-badge">AI Tools Collection</span>
+                <h1 class="page-main-title">Mini AI Projects</h1>
+                <h2 class="page-tagline">Collection of Innovative AI-Powered Tools</h2>
+                <p>A suite of practical AI applications including diagram generation, meme creation, task automation, and form filling tools built with modern web technologies.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Mini Projects</h2>
+            <div class="projects-grid">
+                <!-- AUTOFIGURE-AI -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="AUTOFIGURE-AI" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AUTOFIGURE-AI</h3>
+                        <p class="project-description">Intelligent diagram generator that converts text or image inputs into clean, structured, and visually rich diagrams with AI assistance and professional themes.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">React Flow</span>
+                            <span class="tech-tag">AI/ML</span>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4 style="color: var(--accent-yellow); margin-bottom: 0.8rem;">Key Features:</h4>
+                            <ul>
+                                <li>Text & Image to Diagram Conversion</li>
+                                <li>6 Professional Diagram Types</li>
+                                <li>AI Diagram Chat Interface</li>
+                                <li>Auto Smart Coloring</li>
+                                <li>Multiple Visual Themes</li>
+                                <li>Play Animation Mode</li>
+                                <li>Multi-Format Export</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="https://github.com/sarveshramm/AUTOFIGURE-AI" class="luxury-btn btn-yellow" style="margin-top: 1.5rem;">
+                            <i href="https://github.com/sarveshramm/AUTOFIGURE-AI" class="fas fa-external-link-alt"></i> View on Github
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Meme Generator AI -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Meme Generator AI" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Meme Generator AI</h3>
+                        <p class="project-description">Fast, interactive, and responsive meme creation web application with modern UI, instant rendering, and professional meme typography.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">React 19</span>
+                            <span class="tech-tag">Vite 7</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">ESLint</span>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4 style="color: var(--accent-yellow); margin-bottom: 0.8rem;">Key Features:</h4>
+                            <ul>
+                                <li>Modern Gradient Header UI</li>
+                                <li>Top & Bottom Text Inputs</li>
+                                <li>Instant Meme Rendering</li>
+                                <li>Impact-like Meme Font</li>
+                                <li>Responsive Image + Text Overlay</li>
+                                <li>Professional Text Shadows</li>
+                                <li>Easy Deployment</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="https://github.com/sarveshramm/Meme-Generator-AI" class="luxury-btn btn-yellow" style="margin-top: 1.5rem;">
+                            <i class="fas fa-external-link-alt"></i> View on Github
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TaskAI -->
+               
+
+                <!-- AUTOFILL-AI -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="AUTOFILL-AI" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AUTOFILL-AI</h3>
+                        <p class="project-description">Intelligent form filling assistant that automatically completes any type of form using AI by simply pasting the form link or uploading the document.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Web Scraping</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4 style="color: var(--accent-yellow); margin-bottom: 0.8rem;">Key Features:</h4>
+                            <ul>
+                                <li>One-Click Form Filling</li>
+                                <li>Link-based Form Processing</li>
+                                <li>Document Upload Support</li>
+                                <li>AI-Powered Field Detection</li>
+                                <li>Multi-format Form Support</li>
+                                <li>Data Validation</li>
+                                <li>Batch Processing</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="luxury-btn btn-yellow" style="margin-top: 1.5rem;">
+                            <i class="fas fa-external-link-alt"></i> View on Github
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Clickguide Extension -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Clickguide Extension" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Clickguide Extension</h3>
+                        <p class="project-description">Browser extension that guides users through webpage tasks using AI commands, providing step-by-step visual instructions for any web-based operation.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Chrome Extension</span>
+                            <span class="tech-tag">Manifest V3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">DOM Manipulation</span>
+                        </div>
+                        
+                        <div class="project-details">
+                            <h4 style="color: var(--accent-yellow); margin-bottom: 0.8rem;">Key Features:</h4>
+                            <ul>
+                                <li>Text-based Command Interface</li>
+                                <li>Visual Step-by-Step Guidance</li>
+                                <li>Element Highlighting</li>
+                                <li>Cross-browser Support</li>
+                                <li>Custom Instruction Creation</li>
+                                <li>Progress Saving</li>
+                                <li>User Profile Sync</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="luxury-btn btn-yellow" style="margin-top: 1.5rem;">
+                            <i class="fas fa-external-link-alt"></i> View on Github
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-content">
+                <h2 class="section-title">Explore All Projects</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Each mini project is available with complete source code and documentation</p>
+                <a href="index.html#projects" class="luxury-btn btn-yellow">
+                    <i class="fas fa-arrow-left"></i> Back to All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="luxury-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Sarveshram.</div>
+                <p style="color: var(--text-dark); max-width: 600px;">
+                    AI Engineer & Creative Technologist building innovative tools and applications to solve everyday problems.
+                </p>
+               
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add animations on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.project-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state
+        document.querySelectorAll('.project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        animateOnScroll();
+    </script>
+</body>
+</html>
